@@ -1,3 +1,0 @@
-C:/Users/larro/password-manager/build/CMakeFiles/password_manager.dir
-C:/Users/larro/password-manager/build/CMakeFiles/ALL_BUILD.dir
-C:/Users/larro/password-manager/build/CMakeFiles/ZERO_CHECK.dir
