@@ -1,4 +1,7 @@
-#include <stdio.h>   // This is C
+#include <stdio.h>
+#include <stdlib.h>
+#include "../include/my_string.h"
+#include "../include/my_txt.h"
 
 void add_password(){
     char* service = malloc(50 * sizeof(char));
@@ -20,7 +23,7 @@ void add_password(){
         scanf("%49s", password2);
     }
     char* result = str_append(service, password);
-
+    
     txt_add(result);
 
     free(password);

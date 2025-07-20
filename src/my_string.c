@@ -1,4 +1,5 @@
-
+#include <stddef.h>
+#include <stdlib.h> 
 int str_length(char* str){
     int i = 0;
     while(str[i] != '\0'){
@@ -27,12 +28,14 @@ int str_equal(char* str1, char* str2){
 }
 
 char* str_append(char* service, char* password){
+
     int i = 0;
     int j = 0;
     int service_length = str_length(service);
     int password_length = str_length(password);
 
     char* result = malloc(service_length + password_length + 2);
+
     while(service[i] != '\0'){
         result[i] = service[i];
         i++;
@@ -45,5 +48,6 @@ char* str_append(char* service, char* password){
         j++;
     }
     result[i] = '\0';
+    
     return result;
 }
