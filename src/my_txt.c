@@ -11,3 +11,11 @@ int txt_add(char* text){
     fclose(file);
     return 0;
 }
+
+char** txt_get_words(FILE* file){
+    FILE* file_aux = file;
+
+    while(1){
+        
+    }
+}
