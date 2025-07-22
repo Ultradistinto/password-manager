@@ -23,28 +23,27 @@ Head* create_list(){
 
 void insert_beginning(Head* list, void* new_data){
     Node* new_node = create_node(new_data);
-    
-    if(list->head == NULL)
 
+    if(!list->head){
+        list->tail = new_node;
+    }
     new_node->next = list->head;
     list->head = new_node;
     list->size++;
 }
 
 void insert_end(Head* list, void* new_data){
+    Node* new_node = create_node(new_data);
+    new_node->next = NULL;
 
-    Node* aux = list->head;
-    if(!aux){
-        insert_beginning(list, new_data);
+    if(list->size == 0){
+        list->head = new_node;
+        list->tail = new_node;
     }else{
-        while (aux->next){
-            aux = aux->next;
-        }
-        Node* new_node = create_node(new_data);
-        aux->next = new_node;
-        list->size++;
-
+        list->tail->next = new_node;
+        list->tail = new_node;
     }
+    list->size++;
 }
 
 void delete_first_node(Head* list, void* node_delete, int (*compare)(const void*, const void*)){

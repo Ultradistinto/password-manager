@@ -18,12 +18,18 @@ int main() {
     test_str_length();
     test_str_equal();
     test_str_append();
+    printf("Test de string paso.\n");
+
 
     // linked lists
     test_insert_beginning();
     test_insert_end();
+    printf("Pasaron los tests de insert.\n");
+
     test_create_list();
     test_delete_first_node();
+    printf("Test de linked list paso.\n");
+
 
     printf("All tests passed.\n");
     return 0;

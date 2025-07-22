@@ -16,11 +16,6 @@ int txt_add(char* text){
     return 0;
 }
 
-char* txt_search(char* text, char* ocurrence){
-    return NULL;
-}
-
-
 Head* txt_get_words(FILE* file){
     Head* list_words = create_list();
 
@@ -33,4 +28,25 @@ Head* txt_get_words(FILE* file){
     }
 
     return list_words;
+}
+
+
+char* txt_get_full_text(FILE* original_file){
+    FILE* file = fopen(file, "rb");
+    if (!file) return NULL;
+
+    fseek(file, 0, SEEK_END);
+    long length = ftell(file);
+    rewind(file);
+
+    char* buffer = malloc(length + 1);
+    if(!buffer){
+        fclose(file);
+        return NULL;
+    }
+    fread(buffer, 1, length, file);
+    buffer[length] = '\0';
+
+    fclose(file);
+    return buffer;
 }

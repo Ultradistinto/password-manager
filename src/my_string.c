@@ -1,7 +1,10 @@
 #define _CRT_SECURE_NO_WARNINGS
 
 #include <stddef.h>
+#include <stdlib.h>
 #include <stdlib.h> 
+#include "my_linked_list.h"
+
 int str_length(char* str){
     int i = 0;
     while(str[i] != '\0'){
@@ -61,4 +64,34 @@ void str_copy(char* original, char* copia){
         indice++;
     }
     copia[indice] = '\0';
+}
+
+Head* str_splice(char divider, char* text){
+    Head* list = create_list();
+
+    int i = 0;
+    int length = str_length(text);
+
+    while(i < length){
+
+        while (i < length && text[i] == divider) i++;
+        if (i >= length) break;
+
+        int word_start = i;
+        int word_length = 0;
+
+        while(i < length && text[i] != divider){
+            word_length++;
+            i++;
+        }
+
+        char* word = malloc(word_length + 1);
+        for(int j = 0; j < word_length; j++){
+            word[j] = text[word_start + j];
+        }
+        word[word_length] = '\0';
+
+        insert_end(list, word);
+    }
+    return list;
 }
