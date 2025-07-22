@@ -7,15 +7,16 @@ typedef struct Node {
     struct Node* next;
 } Node;
 typedef struct Head{
-    Node* next;
+    Node* tail;
+    Node* head;
     int size;
-}Head ;  
+} Head;  
 
 Head* create_list();
 Node* create_node(void* data);
 void insert_beginning(Head* list, void* data);
 void insert_end(Head* list, void* data);
-void delete_first_node(Head* list, void* data);
+void delete_first_node(Head* list, void* data, int (*compare)(const void*, const void*));
 void delete_all_node(Head* list, void* data);
 void print_list(Head* list);
 void delete_list(Head* list);  

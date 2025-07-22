@@ -23,5 +23,6 @@ add_executable(tests
     src/my_string.c
     src/my_linked_list.c
     src/my_txt.c
+    src/my_comparator.c
 )
 target_include_directories(tests PRIVATE include)

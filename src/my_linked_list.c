@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include "my_linked_list.h"
 #include <stdlib.h>
 
@@ -13,7 +15,8 @@ Node* create_node(void* data){
 Head* create_list(){
     Head* new_list = (Head*)malloc(sizeof(Head));
     new_list->size = 0;
-    new_list->next = NULL;
+    new_list->head = NULL;
+    new_list->tail = NULL;
 
     return new_list;
 }
@@ -21,14 +24,16 @@ Head* create_list(){
 void insert_beginning(Head* list, void* new_data){
     Node* new_node = create_node(new_data);
     
-    new_node->next = list->next;
-    list->next = new_node;
+    if(list->head == NULL)
+
+    new_node->next = list->head;
+    list->head = new_node;
     list->size++;
 }
 
 void insert_end(Head* list, void* new_data){
 
-    Node* aux = list->next;
+    Node* aux = list->head;
     if(!aux){
         insert_beginning(list, new_data);
     }else{
@@ -43,11 +48,16 @@ void insert_end(Head* list, void* new_data){
 }
 
 void delete_first_node(Head* list, void* node_delete, int (*compare)(const void*, const void*)){
-    Node* prev = list;
-    Node* iter = prev->next;
+    Node* prev = NULL;
+    Node* iter = list->head;
     while(iter){
         if(compare(iter->data, node_delete)){
-            prev->next = iter->next;
+            if(prev){
+                prev->next = iter->next;
+            }
+            else{
+                list->head = iter->next;
+            }
             free(iter);
             list->size--;
             return;

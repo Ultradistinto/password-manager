@@ -1,3 +1,5 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stddef.h>
 #include <stdlib.h> 
 int str_length(char* str){
@@ -47,4 +49,16 @@ char* str_append(char* service, char* password){
     result[i] = '\0';
     
     return result;
+}
+
+void str_copy(char* original, char* copia){
+    
+    int indice = 0;
+    int largo_original = str_length(original);
+    while(indice < largo_original){
+        copia[indice] = original[indice];
+
+        indice++;
+    }
+    copia[indice] = '\0';
 }

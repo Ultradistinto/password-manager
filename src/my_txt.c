@@ -1,5 +1,9 @@
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <my_linked_list.h>
+#include "my_string.h"
 
 
 
@@ -12,10 +16,21 @@ int txt_add(char* text){
     return 0;
 }
 
-char** txt_get_words(FILE* file){
-    FILE* file_aux = file;
+char* txt_search(char* text, char* ocurrence){
+    return NULL;
+}
 
-    while(1){
-        
+
+Head* txt_get_words(FILE* file){
+    Head* list_words = create_list();
+
+
+    char word[256];
+    while (fscanf(file, "%255s", word) == 1) {
+        char* word_copy = malloc(str_length(word) + 1);
+        str_copy(word_copy, word);
+        insert_end(list_words, word_copy);
     }
+
+    return list_words;
 }
