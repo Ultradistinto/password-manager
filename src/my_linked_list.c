@@ -65,3 +65,15 @@ void delete_first_node(Head* list, void* node_delete, int (*compare)(const void*
         iter = iter->next;
     }
 }
+
+void destroy_node(Node* node){
+    if (!node) return;
+    if(node->next)
+        destroy_node(node->next);
+    free(node->data);
+    free(node);
+}
+void destroy_list(Head* list){
+    destroy_node(list->head);
+    free(list);
+}

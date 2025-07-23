@@ -2,7 +2,6 @@
 
 #include <stddef.h>
 #include <stdlib.h>
-#include <stdlib.h> 
 #include "my_linked_list.h"
 
 int str_length(char* str){
@@ -94,4 +93,19 @@ Head* str_splice(char divider, char* text){
         insert_end(list, word);
     }
     return list;
+}
+
+int str_starts_with(char* string, char* start){
+    int i = 0;
+    int length = str_length(start);
+    while(i < length){
+        if(start[i] == '\0'){
+            return 1;
+        }
+        if(string[i] != start[i]){
+            return 0;
+        }
+        i++;
+    }
+    return 1;
 }

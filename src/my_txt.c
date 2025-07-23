@@ -19,11 +19,10 @@ int txt_add(char* text){
 Head* txt_get_words(FILE* file){
     Head* list_words = create_list();
 
-
     char word[256];
     while (fscanf(file, "%255s", word) == 1) {
         char* word_copy = malloc(str_length(word) + 1);
-        str_copy(word_copy, word);
+        str_copy(word, word_copy);
         insert_end(list_words, word_copy);
     }
 
@@ -31,8 +30,8 @@ Head* txt_get_words(FILE* file){
 }
 
 
-char* txt_get_full_text(FILE* original_file){
-    FILE* file = fopen(file, "rb");
+char* txt_get_full_text(char* original_file){
+    FILE* file = fopen(original_file, "r");
     if (!file) return NULL;
 
     fseek(file, 0, SEEK_END);
@@ -49,4 +48,44 @@ char* txt_get_full_text(FILE* original_file){
 
     fclose(file);
     return buffer;
+}
+
+void txt_overwrite(Head* list, char* filename){
+    FILE* file = fopen(filename, "w");
+    if(!file) return;
+
+    Node* current = list->head;
+    while(current){
+        fprintf(file, "%s\n", (char*)current->data);
+        current = current->next;
+    }
+    fclose(file);
+}
+
+int update_service_password(Head* list, char* service, char* password){
+    Node* current = list->head;
+    int updated = 0;
+    while(current){
+        if(str_starts_with(current->data, service)){
+            free(current->data);
+            current->data = str_append(service, password);
+            return ++updated;
+        }
+        current = current->next;
+    }
+    return updated;
+}
+
+void setup_txt(){
+    FILE* file = fopen("passwords.txt", "r");
+    if (!file) {
+        file = fopen("passwords.txt", "w");
+        if (!file) {
+            printf("Error creando archivo.\n");
+            return;
+        }
+        fclose(file);
+        return;
+    }
+    fclose(file);
 }

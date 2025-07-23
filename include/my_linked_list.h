@@ -19,7 +19,7 @@ void insert_end(Head* list, void* data);
 void delete_first_node(Head* list, void* data, int (*compare)(const void*, const void*));
 void delete_all_node(Head* list, void* data);
 void print_list(Head* list);
-void delete_list(Head* list);  
-
+void destroy_node(Node* node);
+void destroy_list(Head* list);
 
 #endif
