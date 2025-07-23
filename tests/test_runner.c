@@ -4,6 +4,9 @@
 void test_str_length();
 void test_str_equal();
 void test_str_append();
+void test_str_copy();
+void test_str_splice();
+void test_str_starts_with();
 
 // linked list
 void test_insert_beginning();
@@ -18,6 +21,11 @@ int main() {
     test_str_length();
     test_str_equal();
     test_str_append();
+    test_str_copy();
+    printf("Test de copy paso.\n");
+    test_str_splice();
+    printf("Test de splice paso.\n");
+    test_str_starts_with();
     printf("Test de string paso.\n");
 
 

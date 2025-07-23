@@ -29,7 +29,6 @@ Head* txt_get_words(FILE* file){
     return list_words;
 }
 
-
 char* txt_get_full_text(char* original_file){
     FILE* file = fopen(original_file, "r");
     if (!file) return NULL;

@@ -29,3 +29,36 @@ void test_str_append() {
     assert(str_equal(result, "service:") == 1);
     free(result);
 }
+
+void test_str_copy(){
+    char* word = "original";
+
+    char* copy = malloc(str_length(word) + 1);
+    str_copy(word, copy);
+    assert(str_equal(word, copy));
+
+    str_copy("", copy);
+    assert(str_length(copy) == 0);
+    free(copy);
+
+}
+
+void test_str_splice(){
+    char* words = "1:2:3:4:5";
+
+    Head* lista = str_splice(':' , words);
+
+    assert(lista->size == 5);
+    assert(str_equal(lista->head->data, "1"));
+    assert(str_equal(lista->tail->data, "5"));
+
+    destroy_list(lista);
+}
+
+void test_str_starts_with(){
+    char* word = "Prueba123";
+
+    assert(str_starts_with(word, "Prueba"));
+    assert(!str_starts_with(word, "123"));
+    assert(str_starts_with(word, "Prueba123"));
+}
